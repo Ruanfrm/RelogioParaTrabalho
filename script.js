@@ -1,4 +1,4 @@
-const webhookURL = 'https://discord.com/api/webhooks/1103282202361475193/0Vcb4WHQoyTKNxJnGQictMf1GiqDkXQKKQVxn5VzUIzJCT-lZwAL7CiBgB-0QWoljwIa'; // Substitua pelo URL do webhook do Discord
+const webhookURL = ''; // Substitua pelo URL do webhook do Discord
 
 function startTimer(timerId, pauseName, duration) {
   const timerElement = document.getElementById(timerId);
@@ -14,7 +14,7 @@ function startTimer(timerId, pauseName, duration) {
 
         if (duration === 180) {
           sendMessageToWebhook(`A pausa ${pauseName} está chegando ao fim. Faltam 3 minutos.`);
-          sendSMS(`A pausa ${pauseName} está chegando ao fim. Faltam 3 minutos.`, '+5588981558151');
+          sendSMS(`A pausa ${pauseName} está chegando ao fim. Faltam 3 minutos.`, 'numero de destino');
         }
 
         if (duration <= 0) {
@@ -50,9 +50,9 @@ function sendMessageToWebhook(message) {
 }
 
 function sendSMS(message, toPhoneNumber) {
-  const twilioAccountSid = 'ACbe6f2f1ce1ce867be6c445fe737ad163';
-  const twilioAuthToken = '7f9ce917f01219252d5eaa899e5f7bc5';
-  const twilioPhoneNumber = '+15418768219';
+  const twilioAccountSid = 'sid';
+  const twilioAuthToken = 'tokensms';
+  const twilioPhoneNumber = '+';
 
   const url = `https://api.twilio.com/2010-04-01/Accounts/${twilioAccountSid}/Messages.json`;
 
