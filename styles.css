@@ -1,0 +1,86 @@
+body {
+  background-color: #111;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.clock-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.clock {
+  font-size: 62px;
+  margin-bottom: 20px;
+}
+
+.pauses-container {
+  margin-top: 50px;
+  text-align: center;
+}
+
+h1, h2 {
+  margin-bottom: 10px;
+}
+
+.pause {
+  margin-bottom: 20px;
+}
+
+.pause-name {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.timer {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.start-pause {
+  padding: 10px 20px;
+  background-color: #009688;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.start-pause:hover {
+  background-color: #00796b;
+}
+
+button {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+footer p {
+  margin: 0;
+}
+
+footer p:first-child {
+  margin-bottom: 10px;
+}
+
+footer p:last-child {
+  font-size: 12px;
+}
+
+/* .icon {
+  width: 40px;
+} */

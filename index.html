@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Ruan Freire">
+    <title>Controle de Pausas</title>
+    <link rel="shortcut icon" href="/icon-clock.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="clock-container">
+        <h1>Horário de Brasília:</h1>
+        <div class="clock" id="clock"></div>
+    </div>
+
+    <div class="pauses-container">
+        <h2>Cronômetros de retornos das pausas</h2>
+
+        <div class="pause">
+            <div class="pause-name">Descanso 1 (10 min)</div>
+            <div class="timer" id="timer1"></div>
+            <button class="start-pause" data-timer-id="timer1" onclick="startTimer('timer1', 'Descanso 1', 600);">Iniciar</button>
+        </div>
+        <div class="pause">
+            <div class="pause-name">Refeição (20 min)</div>
+            <div class="timer" id="timer3"></div>
+            <button class="start-pause" data-timer-id="timer3" onclick="startTimer('timer3', 'Refeição', 1200);">Iniciar</button>
+        </div>
+        
+        <div class="pause">
+            <div class="pause-name">Descanso 2 (10 min)</div>
+            <div class="timer" id="timer2"></div>
+            <button class="start-pause" data-timer-id="timer2" onclick="startTimer('timer2', 'Descanso 2', 600);">Iniciar</button>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+    <footer>
+        <p>Desenvolvido por Ruan Freire</p>
+        <!-- <a href="https://github.com/ruanfrm">GITHUB</a> -->
+        <p>&copy; 2023 Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
