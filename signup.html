@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <form class="form" id="signup-form">
+    <p class="title">Signup</p>
+    <p class="message">Create an account to access the app.</p>
+
+    <div class="flex">
+      <label>
+        <input required="" placeholder="" type="text" class="input" id="firstname-input">
+        <span>First Name</span>
+      </label>
+
+      <label>
+        <input required="" placeholder="" type="text" class="input" id="lastname-input">
+        <span>Last Name</span>
+      </label>
+    </div>  
+
+    <label>
+      <input required="" placeholder="" type="email" class="input" id="email-input">
+      <span>Email</span>
+    </label> 
+
+    <label>
+      <input required="" placeholder="" type="password" class="input" id="password-input">
+      <span>Password</span>
+    </label>
+
+    <label>
+      <input required="" placeholder="" type="password" class="input" id="confirm-password-input">
+      <span>Confirm Password</span>
+    </label>
+
+    <button class="submit" type="submit">Sign Up</button>
+    <p class="signin">Already have an account? <a href="login.html">Sign In</a></p>
+  </form>
+
+  <script src="firebase-config.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="signup.js"></script>
+</body>
+</html>

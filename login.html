@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./icon-chat.png" type="image/x-icon">
+  <link rel="stylesheet" href="login.css">
+  <title>Login</title>
+</head>
+<body>
+  <div id="app">
+    <div class="form-container">
+      <p class="title">Faça o login seu trouxa 🥴</p>
+      <form class="form">
+        <div class="input-group">
+          <label for="username">Nome de usuário</label>
+          <input type="text" name="username" id="username" placeholder="">
+        </div>
+        <div class="input-group">
+          <label for="password">Senha</label>
+          <input type="password" name="password" id="password" placeholder="">
+          <div class="forgot">
+            <a rel="noopener noreferrer" href="#" id="forgotPassword">Esqueceu a senha?</a>
+          </div>
+        </div>
+        <button class="sign">Entrar</button>
+      </form>
+      <p id="errorMessage"></p>
+      <div class="social-message">
+        <div class="line"></div>
+        <p class="message">Login com contas sociais</p>
+        <div class="line"></div>
+      </div>
+      <div class="social-icons">
+        <button aria-label="Log in with Google" class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-5 h-5 fill-current">
+            <path d="M16.318 13.714v5.484h9.078c-0.37 2.354-2.745 6.901-9.078 6.901-5.458 0-9.917-4.521-9.917-10.099s4.458-10.099 9.917-10.099c3.109 0 5.193 1.318 6.38 2.464l4.339-4.182c-2.786-2.599-6.396-4.182-10.719-4.182-8.844 0-16 7.151-16 16s7.156 16 16 16c9.234 0 15.365-6.49 15.365-15.635 0-1.052-0.115-1.854-0.255-2.651z"></path>
+          </svg>
+        </button>
+      
+      </div>
+     
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+  <script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyBs9XNudfx2YyL-Pb2x1Bm6jvFZ36m6ltc",
+    authDomain: "login-clock.firebaseapp.com",
+    projectId: "login-clock",
+    storageBucket: "login-clock.appspot.com",
+    messagingSenderId: "1043355631754",
+    appId: "1:1043355631754:web:00be145f8d0ced6f4fed73"
+  };
+// Inicialização do Firebase
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+
+// Elementos do formulário
+const usernameInput = document.getElementById("username");
+const passwordInput = document.getElementById("password");
+const loginButton = document.querySelector(".sign");
+const googleButton = document.querySelector(".icon");
+const errorMessage = document.getElementById("errorMessage");
+// Função para realizar o login com email e senha
+const loginWithEmailPassword = (event) => {
+  event.preventDefault();
+
+  const username = usernameInput.value;
+  const password = passwordInput.value;
+
+  auth.signInWithEmailAndPassword(username, password)
+    .then((userCredential) => {
+      // Login bem-sucedido, redirecionar para a página principal
+      window.location.href = "index.html";
+    })
+    .catch((error) => {
+      // Tratamento de erros no login
+      const errorMessage = error.message;
+      console.error(errorMessage);
+          // Ocorreu um erro durante o login, exibir mensagem de erro
+          errorMessage.textContent = error.message;
+
+    });
+
+  // Limpar os campos de input
+  usernameInput.value = "";
+  passwordInput.value = "";
+};
+
+// Função para realizar o login com o Google
+const loginWithGoogle = () => {
+  const provider = new firebase.auth.GoogleAuthProvider();
+
+  auth.signInWithPopup(provider)
+    .then((userCredential) => {
+      // Login bem-sucedido, redirecionar para a página principal
+      window.location.href = "index.html";
+    })
+    .catch((error) => {
+      // Tratamento de erros no login
+      const errorMessage = error.message;
+      console.error(errorMessage);
+    });
+};
+
+// Adicionar os listeners de eventos aos botões
+loginButton.addEventListener("click", loginWithEmailPassword);
+googleButton.addEventListener("click", loginWithGoogle);
+
+
+    // Função para registrar um novo usuário
+    const registerUser = (event) => {
+      event.preventDefault();
+
+      const email = document.getElementById("registerEmail").value;
+      const password = document.getElementById("registerPassword").value;
+
+      auth.createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          // Registro do usuário bem-sucedido
+          const user = userCredential.user;
+          console.log(user);
+          // Redirecionar para a página do chat
+          window.location.href = "index.html";
+        })
+        .catch((error) => {
+          // Ocorreu um erro durante o registro do usuário
+          console.log(error);
+        });
+    };
+
+
+
+    // Função para salvar a sessão no Firebase
+
+     // Referência ao Firestore
+  const db = firebase.firestore();
+
+function salvarSessao(usuario) {
+  firestore.collection("sessoes").doc(usuario.uid).set({
+    uid: usuario.uid,
+    displayName: usuario.displayName,
+    email: usuario.email,
+    photoURL: usuario.photoURL,
+  });
+}
+
+// Função para recuperar a sessão do Firebase
+async function recuperarSessao(uid) {
+  const snapshot = await firestore.collection("sessoes").doc(uid).get();
+  if (snapshot.exists) {
+    return snapshot.data();
+  } else {
+    return null;
+  }
+}
+
+// Função para remover a sessão do Firebase
+function removerSessao(uid) {
+  firestore.collection("sessoes").doc(uid).delete();
+}
+
+// Exemplo de uso
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    // Usuário autenticado
+    console.log(user);
+    salvarSessao(user);
+  } else {
+    // Usuário não autenticado
+    console.log("Usuário não autenticado");
+  }
+});
+
+// esqueceu a senha
+
+const forgotPasswordLink = document.getElementById("forgotPassword");
+
+forgotPasswordLink.addEventListener("click", () => {
+  const email = prompt("Digite seu endereço de email:");
+
+  if (email) {
+    firebase
+      .auth()
+      .sendPasswordResetEmail(email)
+      .then(() => {
+        alert("Um email de redefinição de senha foi enviado para o seu endereço de email.");
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Ocorreu um erro ao enviar o email de redefinição de senha. Verifique se o endereço de email está correto.");
+      });
+  }
+});
+
+  </script>
+</body>
+</html>

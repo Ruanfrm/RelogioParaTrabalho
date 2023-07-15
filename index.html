@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Ruan Freire">
+    <title>
+        
+        Controle de Pausas</title>
+    <link rel="shortcut icon" href="icon-clock.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body> 
+   
+    <div class="clock-container">
+        <h1>Horário de Brasília
+            <img src="./svgs/regular/clock.svg" class="icones-clock">
+        </h1>
+        <div class="clock" id="clock"></div>
+        <h3 id="data"></h3>
+
+    </div>
+
+    <h2 class="pauses-title">Cronômetros de retornos das pausas</h2>
+
+    <div class="pauses-container">
+        <div class="pause">
+            <div class="pause-name">Descanso 1 (10 min)</div>
+            <div class="timer" id="timer1"></div>
+            <button class="start-pause" data-timer-id="timer1" onclick="startTimer('timer1', 'Descanso 1', 600);">Iniciar</button>
+        </div>
+        <div class="pause">
+            <div class="pause-name">Refeição (20 min)</div>
+            <div class="timer" id="timer3"></div>
+            <button class="start-pause" data-timer-id="timer3" onclick="startTimer('timer3', 'Refeição', 1200);">Iniciar</button>
+        </div>
+        
+        <div class="pause">
+            <div class="pause-name">Descanso 2 (10 min)</div>
+            <div class="timer" id="timer2"></div>
+            <button class="start-pause" data-timer-id="timer2" onclick="startTimer('timer2', 'Descanso 2', 600);">Iniciar</button>
+        </div>
+    </div>
+
+    <div class="timer-container">
+        <div class="timer-column">
+            <h2>Cronômetro 
+                <img src="./svgs/solid/stopwatch.svg" class="icones">
+            </h2>
+            <div class="timercronometro">00:00</div>
+            <div class="button-container">
+                <button class="start-button">Iniciar</button>
+                <button class="stop-button" disabled>Parar</button>
+                <button class="reset-button">Zerar</button>
+            </div>
+        </div>
+        <div class="timer-column">
+            <h2>Cronômetro de 1 minuto 
+                
+            </h2>
+            <div id="timer-1min" >01:00</div>
+            <div class="button-container">
+                <button id="start-button-1min" class="start-button">Iniciar</button>
+                <button id="stop-button-1min" class="stop-button">Parar</button>
+            </div>
+        </div>
+    </div>
+<div class="div-task">
+    <h2 class="title-task">Lista de Tarefas
+        <img src="./svgs/regular/rectangle-list.svg" class="icone-list">
+    </h2>
+    <form id="task-form">
+        <div class="input-container">
+          <input type="text" id="task-input" class="input-style" placeholder="Adicionar tarefa...">
+          <button type="submit">Adicionar</button>
+        </div>
+      </form>
+    
+      <ul id="task-list"></ul>
+    </div>
+
+
+
+
+    <footer>
+        <p>Desenvolvido por Ruan Freire</p>
+        <p>&copy; 2023 Todos os direitos reservados.</p>
+    </footer>
+    <navbar>
+        <button id="logout-btn" class="button-sair"><span class="text">Sair</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path></svg></span></button>
+      </navbar>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="script.js"></script>
+    <script src="logado.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+</body>
+</html>
